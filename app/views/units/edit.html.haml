@@ -1,0 +1,12 @@
+%h1 Edit Unit
+= render 'form'
+%ul.breadcrumb
+  %li
+    =link_to "Homework Tracker Home", root_path
+  %li
+    %a{:href => "/locations"} Location Portal
+  %li
+    = link_to 'Location Profile', location_path(@location)
+  %li
+    = link_to 'Unit Portal', location_units_path(@location)
+  %li.active Edit Unit

@@ -1,0 +1,2 @@
+$("ul.put_status").html("")
+  $("ul.put_status").append("<%= escape_javascript(render('patients/workflow_partial', transmit: @transmit)) %>")

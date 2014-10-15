@@ -1,0 +1,12 @@
+%h1
+Locations
+%br
+- @locations.each do |location|
+  = link_to "#{location.location_name}", location_path(location)
+  - if can? :update, @location
+    = link_to "Edit", edit_location_path(location), class: 'btn btn-xs btn-warning'
+  -if can? :destroy, @location
+    = link_to "Delete", location_path(location), method: :delete, class: 'btn btn-xs btn-danger'
+  %br 
+-if can? :create, @location
+  = link_to "New Location", new_location_path, class: 'btn btn-info btn-block'

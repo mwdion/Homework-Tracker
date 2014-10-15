@@ -1,0 +1,17 @@
+%h1
+Units
+%br
+- @units.each do |unit|
+  = link_to unit.name, location_unit_path(@location, unit)
+  = link_to unit.date, location_unit_path(@location, unit)
+  = link_to "Edit", edit_location_unit_path(@location, unit), class: 'btn btn-xs btn-warning'
+  = link_to "Delete", location_unit_path(@location, unit), method: :delete, class: 'btn btn-xs btn-danger'
+  %br 
+%ul.breadcrumb
+  %li
+    =link_to "Homework Tracker Home", root_path
+  %li
+    %a{:href => "/locations"} Location Portal
+  %li
+    = link_to 'Location Profile', location_path(@location)
+  %li.active New Portal

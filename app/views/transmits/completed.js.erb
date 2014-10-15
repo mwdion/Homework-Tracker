@@ -1,0 +1,2 @@
+$("ul.status_list").html("")
+  $("ul.status_list").append("<%= escape_javascript(render('transmits/workflow_partial', transmit: @transmit)) %>")

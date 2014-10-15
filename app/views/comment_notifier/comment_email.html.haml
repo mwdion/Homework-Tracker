@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1
+    %p You have recieved a comment on your recent submission. 
+    %p= "#{@user.email} posted a comment on #{@transmit.name}." 
+    %p= "#{@user.email} posted:" 
+    %p= @content
+    %br
+    %p= "To see the comment stream, just follow this link: #{@url}."

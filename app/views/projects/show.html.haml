@@ -1,0 +1,50 @@
+%h1 Project
+Name:
+%br
+= @project.name
+%br
+Date Assigned:
+%br
+= @project.date
+%br
+%br
+Project Description:
+%br
+= @project.description
+%br
+%br
+Project Requirements: 
+%br
+= @project.requirements
+%br
+= link_to "Make a Commit", new_location_unit_project_transmit_path(@location, @unit, @project), class: 'btn btn-info btn-block'
+= link_to "See Commits", location_unit_project_transmits_path(@location, @unit, @project, @transmit), class: 'btn btn-info btn-block'
+%br
+-@project.comments.each do |comment|
+  -if comment.content
+    = comment.first_name
+    = comment.last_name
+    %br
+    = comment.content
+    = link_to "Delete", delete_comment_location_unit_project_path(@location, @unit, @project, comment_id: comment.id), method: :delete
+    %br
+    %br
+%br
+= form_for @comment, url: create_comment_location_unit_project_path(@location, @unit, @project) do |f|
+  = f.text_area :content, class: 'form-control focusedInput', placeholder: 'Add Comment Here...'
+  %br
+  = f.submit
+
+%br
+%ul.breadcrumb
+  %li
+    =link_to "Homework Tracker Home", root_path
+  %li
+    %a{:href => "/locations"} Location Portal
+  %li
+    = link_to 'Location Profile', location_path(@location)
+  %li
+    = link_to 'Unit Portal', location_units_path(@location)
+  %li
+    = link_to 'Unit Profile', location_unit_path(@location, @unit)
+  %li.active Project Profile

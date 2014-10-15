@@ -1,0 +1,21 @@
+%h1 Committed Files
+- @project.transmits.each do |transmit|
+  = link_to "#{transmit.name}", location_unit_project_transmit_path(@location, @unit, @project, transmit)
+  = link_to "Edit", edit_location_unit_project_transmit_path(@location, @unit, @project, transmit), class: 'btn btn-xs btn-warning'
+  = link_to "Delete", location_unit_project_transmit_path(@location, @unit, @project, transmit), method: :delete, class: 'btn btn-xs btn-danger'
+  = transmit.workflow_state
+  %br
+%ul.breadcrumb
+  %li
+    =link_to "Home", root_path
+  %li
+    %a{:href => "/locations"} Location Portal
+  %li
+    = link_to 'Location Profile', location_path(@location)
+  %li
+    = link_to 'Unit Portal', location_units_path(@location)
+  %li
+    = link_to 'Unit Profile', location_unit_path(@location, @unit)
+  %li
+    = link_to 'Project Profile', location_unit_project_path(@location, @unit, @project)
+  %li.active Committed Files

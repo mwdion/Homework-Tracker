@@ -1,0 +1,90 @@
+!!!
+%html
+  %head
+    %title hw_tracker
+    = stylesheet_link_tag    'application', media: 'all'#, 'data-turbolinks-track' => true
+    = javascript_include_tag 'application'#, 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+  / Navigation
+  %nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+    .container
+      / Brand and toggle get grouped for better mobile display
+      .navbar-header
+        %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand{:href => "#"} Homework Tracker
+      / Collect the nav links, forms, and other content for toggling
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            = link_to "Locations", locations_path
+            %ul.nav.navbar-nav.navbar-right
+          %li.dropdown
+            %a#download.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              Login
+              %span.caret
+            %ul.dropdown-menu{"aria-labelledby" => "download"}
+              %li
+                = user_login_links
+      / /.navbar-collapse
+    / /.container
+  / Header
+  .intro-header
+    .container
+      .row
+        .col-lg-12
+          .intro-message
+            %h1 Homework Tracker
+            %h3 Your home for all Iron Yard assignments
+            %hr.intro-divider
+              %ul.list-inline.intro-social-buttons
+                %li
+                  %a.btn.btn-default.btn-lg{:href => "https://twitter.com/TheIronYard"}
+                    %i.fa.fa-twitter.fa-fw
+                    %span.network-name Twitter
+                %li
+                  %a.btn.btn-default.btn-lg{:href => "https://www.facebook.com/TheIronYard"}
+                    %i.fa.fa-github.fa-fw
+                    %span.network-name Vimeo
+                %li
+                  %a.btn.btn-default.btn-lg{:href => "https://www.facebook.com/TheIronYard"}
+                    %i.fa.fa-linkedin.fa-fw
+                    %span.network-name Facebook
+    / /.container
+  / /.intro-header
+  / Page Content
+  .content-section-a
+    .h1 Locations
+    .container
+      .h2.ul
+        .li
+        - @locations.each do |location|
+          = link_to "#{location.location_name}", location_path(location)
+          %br
+      .row
+        .col-lg-5.col-sm-6
+          %hr.section-heading-spacer
+            .clearfix
+        .col-lg-5.col-lg-offset-2.col-sm-6
+       
+    / /.container
+  / /.content-section-a
+  .banner
+    .container
+      .row
+  %footer
+    .container
+      .row
+        .col-lg-12
+          %ul.list-inline
+            
+          %p.copyright.text-muted.small Copyright © Michael Dion 2014. All Rights Reserved
+  / jQuery Version 1.11.0
+  %script{:src => "js/jquery-1.11.0.js"}
+  / Bootstrap Core JavaScript
+  %script{:src => "js/bootstrap.min.js"}
+    = yield

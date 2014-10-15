@@ -1,0 +1,11 @@
+= form_for @location do |f|
+  = if f.object.errors.messages.length > 0
+    <!-- Render the errors to the user -->
+    = f.object.errors.messages.inspect  
+    %br
+      -f.object.errors.messages.each do |key, value| 
+        -value.each do |message| 
+          = key = message 
+          %br
+  = f.text_field :location_name, class: 'form-control focusedInput', placeholder: "Add City, State..."
+  =f.submit "Add Location", class: 'btn btn-success btn-block'

@@ -1,0 +1,12 @@
+= form_for [@location, @unit] do |f|
+  = if f.object.errors.messages.length > 0
+    <!-- Render the errors to the user -->
+    = f.object.errors.messages.inspect  
+    %br
+      -f.object.errors.messages.each do |key, value| 
+        -value.each do |message| 
+          = key = message 
+          %br
+  = f.text_field :name, class: 'form-control focusedInput', placeholder: 'Add Unit Name Here...'
+  = f.date_select( :date, :start_year => 1900)
+  =f.submit "Add Unit", class: 'btn btn-success btn-block'

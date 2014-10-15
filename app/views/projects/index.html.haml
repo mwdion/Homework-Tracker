@@ -1,0 +1,5 @@
+%h1 Projects
+- @unit.projects.each do |project|
+  = link_to "#{project.name}", location_unit_project_path(@location, @unit, project)
+  = link_to "Edit", edit_location_unit_project_path(@location, @unit, project), class: 'btn btn-xs btn-warning'
+  = link_to "Delete", location_unit_project_path(@location, @unit, project), method: :delete, class: 'btn btn-xs btn-danger'

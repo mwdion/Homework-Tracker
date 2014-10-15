@@ -1,0 +1,62 @@
+%h1 Commit View
+%ul.status_list
+  =render "workflow_partial", transmit: @transmit 
+%input{type: "hidden", value: @location.id, class: "location_id"}
+%input{type: "hidden", value: @unit.id, class: "unit_id"}
+%input{type: "hidden", value: @project.id, class: "project_id"}
+%input{type: "hidden", value: @transmit.id, class: "transmit_id"}
+%br
+Name:
+%br
+= @transmit.name
+%br
+GitHub Link:
+%br
+= @transmit.github_link
+%br
+%br
+Heroku Link:
+%br
+= @transmit.heroku_link
+%br
+%br
+Additional URL
+%br
+= @transmit.other_link
+%br
+%br
+Content:
+%br
+= @transmit.content
+%br
+%br
+-@transmit.comments.each do |comment|
+  -if comment.content
+    = comment.first_name
+    = comment.last_name
+    %br
+    = comment.content
+    = link_to "Delete", delete_comment_location_unit_project_path(@location, @unit, @project, comment_id: comment.id), method: :delete
+    %br
+    %br
+%br
+= form_for @comment, url: create_comment_location_unit_project_transmit_path(@location, @unit, @project, @transmit) do |f|
+  = f.text_area :content, class: 'form-control focusedInput', placeholder: 'Add Comment Here...'
+  %br
+  = f.submit
+  %br
+%ul.breadcrumb
+  %li
+    =link_to "Home", root_path
+  %li
+    %a{:href => "/locations"} Location Portal
+  %li
+    = link_to 'Location Profile', location_path(@location)
+  %li
+    = link_to 'Unit Portal', location_units_path(@location)
+  %li
+    = link_to 'Unit Profile', location_unit_path(@location, @unit)
+  %li
+    = link_to 'Project Profile', location_unit_project_path(@location, @unit, @project)
+  %li.active Commit View
+

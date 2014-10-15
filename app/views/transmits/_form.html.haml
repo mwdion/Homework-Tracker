@@ -1,0 +1,29 @@
+= form_for [@location, @unit, @project, @transmit] do |f|
+  = if f.object.errors.messages.length > 0
+    <!-- Render the errors to the user -->
+    = f.object.errors.messages.inspect 
+    %br
+      -f.object.errors.messages.each do |key, value|
+        -value.each do |message|
+          = key = message
+          %br
+  = f.text_field :name, class: 'form-control focusedInput', placeholder: 'Add Project Name Here...'
+  = f.text_area :github_link, class: 'form-control focusedInput', placeholder: 'Add GitHub URL Here...', rows: '5'
+  = f.text_area :heroku_link, class: 'form-control focusedInput', placeholder: 'Add Heroku URL Here...', rows: '5'
+  = f.text_area :other_link, class: 'form-control focusedInput', placeholder: 'Add Additional URLs Here...', rows: '5'
+  = f.text_area :content, class: 'form-control focusedInput', placeholder: 'Add Project Content Here...', rows: '10'
+  = f.submit
+  %ul.breadcrumb
+    %li
+      =link_to "Home", root_path
+    %li
+      %a{:href => "/locations"} Location Portal
+    %li
+      = link_to 'Location Profile', location_path(@location)
+    %li
+      = link_to 'Unit Portal', location_units_path(@location)
+    %li
+      = link_to 'Unit Profile', location_unit_path(@location, @unit)
+    %li
+      = link_to 'Project Profile', location_unit_project_path(@location, @unit, @project)
+    %li.active New Commit

@@ -1,0 +1,9 @@
+Status: #{@transmit.workflow_state}
+- if @transmit.workflow_state == "submitted" 
+  = link_to "reviewed", 'javascript:void(0);', class: "put_status btn btn-xs btn-warning", workflow_state: "reviewed"
+- elsif @transmit.workflow_state == "reviewed"
+  = link_to "completed", 'javascript:void(0);', class: "put_status btn btn-xs btn-success", workflow_state: "completed"
+  = link_to "unsatisfactory", 'javascript:void(0);', class: "put_status btn btn-xs btn-danger", workflow_state: "unsatisfactory"
+- elsif @transmit.workflow_state == "unsatisfactory"
+  = link_to "completed", 'javascript:void(0);', class: "put_status btn btn-xs btn-success", workflow_state: "completed"
+- else @transmit.workflow_state == "completed"
