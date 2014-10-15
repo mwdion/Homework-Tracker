@@ -36,6 +36,9 @@ gem 'nested_form'
 gem 'cancan'
 gem 'workflow'
 gem 'devise'
+gem 'rails_12factor', group: :production
+gem 'pg', group: :production
+
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
